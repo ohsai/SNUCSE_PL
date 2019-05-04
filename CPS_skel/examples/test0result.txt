@@ -1,5 +1,0 @@
-(* Public testcase 5 : fibonacci with recursion. *)
-
-(rec fib x => (fib (x + (-1))) + 1) 8
-
-(* Output : 21 *)
