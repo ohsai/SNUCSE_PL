@@ -1,0 +1,31 @@
+[push (x,
+  [bind f;
+  push 10000;
+  push x;
+  store;
+  push x;
+  load;
+  pop;
+  push 1]
+  );
+bind f;
+push 2;
+push f;
+push f;
+push 1;
+malloc;
+call;
+add;
+malloc;
+bind puta#@;
+push puta#@;
+store;
+push puta#@;
+load;
+push puta#@;
+load;
+put;
+unbind;
+pop;
+unbind;
+pop]
