@@ -1,0 +1,23 @@
+(* test case 13 *) 
+(* Test list 
+letf 
+callv 
+*) 
+
+let proc incr(n) = n + 1 in 
+let x := 1 in 
+write incr(x); 
+let proc add(a, b, c) = a + b + c in 
+let a := 2 - 1 in 
+let b := 1 + 1 in 
+let c := 10 / 3 in 
+write add(a, b, c); 
+let proc fact(n) = (if (n = 0) then 1 else (n * fact(n - 1))) in 
+write fact(4) 
+
+(* Output *) 
+(* 
+2 
+6 
+24 
+*) 

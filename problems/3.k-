@@ -1,0 +1,103 @@
+let proc emptyTree (input) = unit
+in
+let proc leaf (int_in) = 
+	{value := int_in , left := unit, right := unit}
+in
+let proc makeLtree (int_in, left_tree) =
+	{value := int_in , left := left_tree, right := emptyTree(0) }
+in
+let proc makeRtree (int_in, right_tree) =
+	{value := int_in , left := emptyTree(0), right := right_tree}
+in
+let proc makeTree (int_in, left_tree, right_tree) =
+	{value := int_in, left := left_tree, right:= right_tree}
+in
+let proc isEmpty (tree_in) =
+	if (tree_in = unit) then true else false
+in
+let proc rTree (tree_in) =
+	tree_in.right
+in
+let proc lTree (tree_in) =
+	tree_in.left
+in
+let proc nodeVal (tree_in) =
+	tree_in.value
+in
+let proc dft (tree_in) =
+	if (isEmpty(tree_in)) then unit else 
+	(
+	write tree_in.value;
+	dft (lTree (tree_in));
+	dft (rTree (tree_in))
+	)
+in
+let proc queue_init (input) = 
+	unit
+in
+let proc queue_isEmpty (queue_in) = 
+	if (queue_in = unit) then true else false
+in
+let proc enqueue (queue_in, value_in) =
+	{value := value_in, next := queue_in}
+in
+let proc frontvalue_queue (queue_in) = 
+	(
+	if (queue_isEmpty(queue_in)) then (write 34404001)
+	else 
+	if (queue_isEmpty(queue_in.next)) then queue_in.value 
+	else
+	frontvalue_queue (queue_in.next)
+	)
+in
+let proc dequeued_queue (queue_in) =
+	(
+	if (queue_isEmpty(queue_in)) then (write 34404002)
+	else
+	if (queue_isEmpty(queue_in.next)) then queue_init (0)
+	else
+	{value := queue_in.value, next := dequeued_queue(queue_in.next)}
+)
+in
+let proc dequeue (queue_in) =
+	{value := (frontvalue_queue (queue_in)) , queue := (dequeued_queue (queue_in))}
+in
+let proc bft (tree_in) =
+	
+	let queue := queue_init (0) in	
+	queue := enqueue(queue, tree_in);
+
+	while (not (queue_isEmpty(queue)))
+	do
+	(
+		let queue_tree_now := dequeue(queue) in
+		let tree_now := queue_tree_now.value in
+		queue := queue_tree_now.queue;
+		write (tree_now.value);
+		
+		if (isEmpty(lTree(tree_now)))
+		then 0 
+		else (queue := enqueue(queue, lTree(tree_now)));
+		if (isEmpty(rTree(tree_now)))
+		then 0 
+		else (queue := enqueue(queue, rTree(tree_now)))
+	)
+	
+in
+2017
+
+(*
+(
+let x := makeTree(6,makeTree(7,makeTree(8,leaf(9), leaf(10)),makeLtree(11,leaf(12))),makeTree(13,makeTree(14,leaf(15),leaf(16)),makeRtree(17,leaf(18))))
+in
+(
+dft(x);
+write (1111111);
+bft(x);
+if (isEmpty(rTree(makeLtree (1, leaf (2)))) = true) then (write 1) else write 0;
+if (isEmpty(lTree(makeRtree (1, leaf (2)))) = true) then (write 1) else write 0;
+dft(emptyTree(0))
+)
+
+)
+*)

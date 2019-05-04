@@ -1,0 +1,11 @@
+(* test case 14 *) 
+(* Test list 
+unbound read 
+*) 
+
+read x 
+
+(* Errors - if not handled then "Fatal error: exception ..." else "Error : ..." *) 
+(* 
+Unbound 
+*) 
